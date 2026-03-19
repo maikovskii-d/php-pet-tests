@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-test('Post (Create, Read, Edit, Delete)', async ({ page }) => {
+test('Post (Create, Read, Update, Delete)', async ({ page }) => {
   // User: Sign up
 
-  await page.goto('http://localhost/sign_up.php');
+  await page.goto('http://localhost/page_sign_up.php');
 
   const username = 'new_test_user_' + +new Date();
 
@@ -60,7 +60,7 @@ test('Post (Create, Read, Edit, Delete)', async ({ page }) => {
 
   // User: Delete
 
-  await page.goto('http://localhost/sign_in.php');
+  await page.goto('http://localhost/page_sign_in.php');
 
   await page.getByRole('textbox', { name: 'name' }).fill('admin');
   await page.getByRole('textbox', { name: 'password' }).fill('admin');

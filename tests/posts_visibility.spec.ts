@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('Post is invisible for another user on Main Page', async ({ page }) => {
   // User: Sign up
 
-  await page.goto('http://localhost/sign_up.php');
+  await page.goto('http://localhost/page_sign_up.php');
 
   const username = 'new_test_user_' + +new Date();
 
@@ -38,14 +38,14 @@ test('Post is invisible for another user on Main Page', async ({ page }) => {
 
   // Post: Try read by admin
 
-  await page.goto('http://localhost/sign_in.php');
+  await page.goto('http://localhost/page_sign_in.php');
 
   await page.getByRole('textbox', { name: 'name' }).fill('admin');
   await page.getByRole('textbox', { name: 'password' }).fill('admin');
 
   await page.getByRole('button', { name: 'submit' }).click();
 
-  await expect(page).toHaveURL('http://localhost/');
+  await expect(page).toHaveURL('http://localhost/page_main_page.php');
 
   await expect(page.locator(`#post_${newPostId}`)).not.toBeVisible();
 
